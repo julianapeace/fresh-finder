@@ -175,81 +175,19 @@ function load_geojson(results, type) {
   map.data.addGeoJson(results);
 }
 
-function add_crimes () {
-    axios.get(`/crimes?minx=${minx}&maxx=${maxx}&miny=${miny}&maxy=${maxy}`)
-   .then(function (response) {
-     crimeMapMarkers = load_geojson(response.data, 'crime');
-   })
-   .catch(function (error) {
-     console.log(error);
-   });
-}
-
-function add_bike() {
-    axios.get(`/bike?minx=${minx}&maxx=${maxx}&miny=${miny}&maxy=${maxy}`)
-    .then(function (response) {
-      load_geojson(response.data, 'bike');
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-}
-
-function add_busstops() {
-    axios.get(`/busstops?minx=${minx}&maxx=${maxx}&miny=${miny}&maxy=${maxy}`)
-    .then(function (response) {
-      load_geojson(response.data, 'busstops');
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-}
-
-function add_busroutes() {
-    axios.get(`/busroutes?minx=${minx}&maxx=${maxx}&miny=${miny}&maxy=${maxy}`)
-    .then(function (response) {
-      load_geojson(response.data, 'busroutes');
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-}
-
-var toggle = function (a, b) {
-    var togg = false;
-    return function () {
-        // passes return value back to caller
-        return (togg = !togg) ? a() : b();
-    };
-};
+// function add_crimes () {
+//     axios.get(`/crimes?minx=${minx}&maxx=${maxx}&miny=${miny}&maxy=${maxy}`)
+//    .then(function (response) {
+//      crimeMapMarkers = load_geojson(response.data, 'crime');
+//    })
+//    .catch(function (error) {
+//      console.log(error);
+//    });
+// }
 
 function hideCrimes() {
     map.data.forEach(function (thing) {
         if (thing.getProperty('type') == 'crime') {
-            map.data.remove(thing);
-        }
-    })
-}
-
-function hideBike() {
-    map.data.forEach(function (thing) {
-        if (thing.getProperty('type') == 'bike') {
-            map.data.remove(thing);
-        }
-    })
-}
-
-function hideBusStops() {
-    map.data.forEach(function (thing) {
-        if (thing.getProperty('type') == 'busstops') {
-            map.data.remove(thing);
-        }
-    })
-}
-
-function hideBusRoutes() {
-    map.data.forEach(function (thing) {
-        if (thing.getProperty('type') == 'busroutes') {
             map.data.remove(thing);
         }
     })
@@ -268,25 +206,6 @@ $(document).ready(function () {
   }, function (){
       crimes = 'off';
       return hideCrimes();
-  }));
-  $('#bikeways').on('click', toggle (function (){
-      bike = 'on';
-      return add_bike();
-  }, function (){
-      bike = 'off';
-      return hideBike();
-  }));
-  $('#bus_stops').on('click', toggle (function (){
-      return add_busstops();
-  }, function (){
-      return hideBusStops();
-  }));
-  $('#bus_routes').on('click', toggle (function (){
-      busRoute = 'on';
-      return add_busroutes();
-  }, function (){
-      busRoute = 'off';
-      return hideBusRoutes();
   }));
   $('#walkscore_button').click(function () {
       console.log('walkscore toggle');
