@@ -16,13 +16,13 @@ PORT = int(os.environ.get('PORT', '5000'))
 
 
 def main():
-    app = Flask(__name__)
+    app = Flask(__name__, static_url_path='/static')
     app.config.from_object(os.environ['APP_SETTINGS'])
     engine = db.create_engine(app.config)
 
     @app.route('/', methods=('GET', 'POST'))
     def home():
-        return render_template('index.html')
+        return render_template('search.html')
 
     @app.route('/search', methods=['POST'])
     def search():

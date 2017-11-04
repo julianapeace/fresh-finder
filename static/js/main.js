@@ -6,9 +6,7 @@ var ws_format = 'tall';
 var ws_width = '300';
 var ws_height = '350';
 var FEATURE_TYPE;
-var crimes = 'off';
-var bike = 'off';
-var busRoute = 'off';
+var data = 'on';
 
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
@@ -52,12 +50,12 @@ function initMap() {
           handleLocationError(false, infoWindow, map.getCenter());
         }
 
-  heatmap = new google.maps.visualization.HeatmapLayer({
-       data: getPoints(),
-       map: map,
-       radius: 20,
-       opacity: .5
-     });
+  // heatmap = new google.maps.visualization.HeatmapLayer({
+  //      data: getPoints(),
+  //      map: map,
+  //      radius: 20,
+  //      opacity: .5
+  //    });
 
 
   map.data.setStyle(function (feature) {
@@ -69,6 +67,13 @@ function initMap() {
      else if (feature.getProperty('offense') == 'Aggravated Assault' || feature.getProperty('offense') == 'Murder' || feature.getProperty('offense') == 'Robbery' || feature.getProperty('offense') == 'Rape') {
        return {
          icon: '/static/images/violent_crimes.png'
+       }
+     }
+     else if (feature.getProperty('type') == 'bike') {
+       return {
+         strokeColor: '#00C7FF',
+         strokeOpacity: 1.0,
+         strokeWeight: 2
        }
      }
 
@@ -83,10 +88,7 @@ function initMap() {
    var infoWindow = new google.maps.InfoWindow({
      content: (
        "<strong>Offense:</strong> " +
-       event.feature.getProperty('offense') +
-       "<br>" +
-       "<strong>Location:</strong> " +
-       event.feature.getProperty('premise_type')
+       event.feature.getProperty('offense')
       //  "<br>" +
       //  "<strong>Occurred:</strong> " +
       //  event.feature.getProperty('time_begun')
@@ -106,14 +108,8 @@ function initMap() {
     miny = initialViewPort.f.b;
     maxy = initialViewPort.f.f;
 
-    if (crimes == 'on') {
-      add_crimes();
-    }
-    if (bike == 'on') {
-      add_bike();
-    }
-    if (busRoute == 'on') {
-      add_busroutes();
+    if (data == 'on') {
+      add_data();
     }
   });
 }
@@ -133,29 +129,30 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
 // Loop through the results array and place a marker for each
 // set of coordinates.
 
-function load_geojson(results, type) {
+function load_geojson(results) {
   console.log(results);
-  FEATURE_TYPE = type;
+  // FEATURE_TYPE = type;
   map.data.addGeoJson(results);
 }
 
-// function add_crimes () {
-//     axios.get(`/crimes?minx=${minx}&maxx=${maxx}&miny=${miny}&maxy=${maxy}`)
-//    .then(function (response) {
-//      crimeMapMarkers = load_geojson(response.data, 'crime');
-//    })
-//    .catch(function (error) {
-//      console.log(error);
-//    });
-// }
+function add_data () {
+    axios.get(`https://opendata.arcgis.com/datasets/59d52cd8fa9d463ea7cf9f3c0a0c6ea2_0.geojson`)
+   .then(function (response) {
+    //  crimeMapMarkers = load_geojson(response.data, 'crime');
+     crimeMapMarkers = load_geojson(response.data, 'crime');
+   })
+   .catch(function (error) {
+     console.log(error);
+   });
+}
 
-// function hideCrimes() {
-//     map.data.forEach(function (thing) {
-//         if (thing.getProperty('type') == 'crime') {
-//             map.data.remove(thing);
-//         }
-//     })
-// }
+function hideData() {
+    map.data.forEach(function (thing) {
+        if (thing.getProperty('type') == 'crime') {
+            map.data.remove(thing);
+        }
+    })
+}
 
 
 $(document).ready(function () {
@@ -166,10 +163,10 @@ $(document).ready(function () {
 
   $('#crime').on('click', toggle (function (){
       crimes = 'on';
-      return add_crimes();
+      return add_data();
   }, function (){
       crimes = 'off';
-      return hideCrimes();
+      return hideData();
   }));
   $('#walkscore_button').click(function () {
       console.log('walkscore toggle');
