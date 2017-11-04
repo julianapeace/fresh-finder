@@ -71,41 +71,6 @@ function initMap() {
          icon: '/static/images/violent_crimes.png'
        }
      }
-     else if (feature.getProperty('type') == 'bike') {
-       return {
-         strokeColor: '#00C7FF',
-         strokeOpacity: 1.0,
-         strokeWeight: 2
-       }
-     }
-     else if (feature.getProperty('color') == 'Blue') {
-       return {
-         strokeColor: '#0067FF',
-         strokeOpacity: 1.0,
-         strokeWeight: 2
-       }
-     }
-     else if (feature.getProperty('color') == 'Red') {
-       return {
-         strokeColor: '#FF0061',
-         strokeOpacity: 1.0,
-         strokeWeight: 2
-       }
-     }
-     else if (feature.getProperty('color') == 'Green') {
-       return {
-         strokeColor: '#C7FF00',
-         strokeOpacity: 1.0,
-         strokeWeight: 2
-       }
-     }
-     else if (feature.getProperty('color') == 'ParkAndRide') {
-       return {
-         strokeColor: '#FFA900',
-         strokeOpacity: 1.0,
-         strokeWeight: 2
-       }
-     }
 
      return {};
    });
@@ -150,7 +115,6 @@ function initMap() {
     if (busRoute == 'on') {
       add_busroutes();
     }
-    // add_busstops();
   });
 }
 
@@ -185,13 +149,13 @@ function load_geojson(results, type) {
 //    });
 // }
 
-function hideCrimes() {
-    map.data.forEach(function (thing) {
-        if (thing.getProperty('type') == 'crime') {
-            map.data.remove(thing);
-        }
-    })
-}
+// function hideCrimes() {
+//     map.data.forEach(function (thing) {
+//         if (thing.getProperty('type') == 'crime') {
+//             map.data.remove(thing);
+//         }
+//     })
+// }
 
 
 $(document).ready(function () {

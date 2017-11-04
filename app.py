@@ -10,21 +10,24 @@ import json
 PORT = int(os.environ.get('PORT', '5000'))
 
 
+# def do_the_search():
+# define here once twitter json data is ready
+# use python.request method and return results
+
+
 def main():
     app = Flask(__name__)
     app.config.from_object(os.environ['APP_SETTINGS'])
     engine = db.create_engine(app.config)
 
-    # @app.route('/', methods=('GET', 'POST'))
-    # def hello():
-    #     return render_template('index.html')
+    @app.route('/', methods=('GET', 'POST'))
+    def home():
+        return render_template('index.html')
 
-    @app.route('/', methods=['GET', 'POST'])
+    @app.route('/search', methods=['POST'])
     def search():
-        if request.method == 'POST':
-            do_the_search()
-        else:
-            return render_template('index.html')
+        results = do_the_search()
+        return render_template('search.html', {'results': results})
 
     app.run(host='0.0.0.0', port=PORT, debug=True)
 

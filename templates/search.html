@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title%}Results{% endblock%}
+
+{% block container %}
+<div class="wrapper container-fluid"><!--map wrapper with collapsable menu-->
+
+        <div class="row">
+          <nav id="sidebar" class="">
+            <!-- Sidebar map menu -->
+            <div class="sidebar-header">
+              <h3>Map Options</h3>
+            </div>
+
+            <hr>
+
+            <!-- Sidebar links, soon to be form -->
+            <button type="button" id="all_crime" class="btn btn-info btn-sm" onclick="toggleHeatmap()">
+              Heat Map
+            </button>
+
+          </nav>
+
+          <div class="col" id="content" style="padding: 0;">
+
+            <button type="button" id="sidebarCollapse" class="btn btn-light btn-sm">
+              Map Menu
+            </button>
+
+            <div id="map"></div>
+
+            <div id="walkscore_container">
+              <div id='ws-walkscore-tile'></div>
+            </div>
+
+          </div>
+
+        </div>
+</div><!--End wrapper-->
+
+{% endblock %}

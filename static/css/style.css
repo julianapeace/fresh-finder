@@ -51,47 +51,6 @@ ul {
   z-index: 100;
 }
 
-#walkscore_button {
-  position: absolute;
-  top: 130px;
-  left: 10px;
-  z-index: 100;
-}
-
-#walkscore_container {
-  position: absolute;
-  top: 5px;
-  right: 10px;
-  width: 0;
-  height: 0;
-  margin-top: 50px;
-  overflow: hidden;
-  transition: height 0.5s;
-  transition-timing-function: ease;
-  background: linear-gradient(to right, white , #DBDFDF);
-}
-
-#walkscore_container.active {
-  position: absolute;
-  top: 5px;
-  right: 10px;
-  width: 300px;
-  height: 300px;
-  margin-top: 50px;
-  overflow: hidden;
-  transition: height 0.5s;
-  transition-timing-function: ease;
-  background: linear-gradient(to right, white , #DBDFDF);
-}
-
-#ws-walkscore-tile {
-  position:relative;
-  text-align:left;
-  }
-
-#ws-walkscore-tile * {
-  float:none;
-  }
 
 .btn-info {
   margin: 5px 2px;
@@ -107,4 +66,8 @@ ul {
 .navbar-text {
   float: right;
   text-align: right;
+}
+
+form {
+  margin: 200px auto 0 auto;
 }
