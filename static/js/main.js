@@ -87,8 +87,8 @@ function initMap() {
   map.data.addListener('click', function(event){
    var infoWindow = new google.maps.InfoWindow({
      content: (
-       "<strong>Offense:</strong> " +
-       event.feature.getProperty('offense')
+       "<strong>Site:</strong> " +
+       event.feature.getProperty('SITE_NAME')
       //  "<br>" +
       //  "<strong>Occurred:</strong> " +
       //  event.feature.getProperty('time_begun')
@@ -133,6 +133,7 @@ function load_geojson(results) {
   console.log(results);
   // FEATURE_TYPE = type;
   map.data.addGeoJson(results);
+  console.log('GEO JSON Complete');
 }
 
 function add_data () {
