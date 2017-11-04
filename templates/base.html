@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    {% block head %}
+    <meta charset="utf-8">
+
+    <title>{% block title%}{% endblock %} - Tweet .img</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
+      crossorigin="anonymous">
+
+    <!-- custom css -->
+    <link rel="stylesheet" href="/static/css/style.css">
+
+    <div id="top">
+
+    </div>
+    {% endblock %}
+  </head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top"><!--navbar-->
+
+      <a class="navbar-brand mb-0 h1" href="/">Tweet .img</a>
+    </nav>
+
+
+      {% block container %}
+      {% endblock %}
+
+
+    <!--bootstrap javascripts-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+      crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+      crossorigin="anonymous"></script>
+
+    <!-- scripts -->
+    <script src="/static/js/main.js"></script>
+    <script src="/static/axios.min.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0fEoOYqyHqCn0k7w0IhQGjW27eFXhfvc&callback=initMap&libraries=visualization">
+    </script>
+  </body>
+
+</html>

@@ -20,16 +20,16 @@ query = input("enter a search query. ex: hurricane harvey 2017:  ->")
 # until = input("enter an end date. ex: 2017-11-03 ")
 
 # GeoLocation
-geolocator = Nominatim()
-def gen_location(address):
-    if address:
-        return geolocator.geocode(address)
-    else:
-        return gen_location(input("no address found. please enter address"))
+# geolocator = Nominatim()
+# def gen_location(address):
+#     if address:
+#         return geolocator.geocode(address)
+#     else:
+#         return gen_location(input("no address found. please enter address"))
 # GEOCODE
-location = gen_location(address)
-coordinates = "{} {}".format(location.latitude, location.longitude)
-geocode = "{} {}".format(coordinates, radius)
+# location = gen_location(address)
+# coordinates = "{} {}".format(location.latitude, location.longitude)
+# geocode = "{} {}".format(coordinates, radius)
 
 
 # Date
@@ -49,7 +49,7 @@ geocode = "{} {}".format(coordinates, radius)
 # response params
 resource = client.api.search.tweets
 
-## Query List
+# Query List
 #############
 # until
 # since_id
@@ -68,7 +68,7 @@ resource = client.api.search.tweets
 #
 # gen_payload(keywords=query,geocode=geocode,since_id=since_id,until=until)
 
-response = resource.get(q=query,lang="en")
+response = resource.get(q=query, lang="en")
 
 response_data = response.data           # decoded JSON data
 response_url = response.resource_url   # resource URL

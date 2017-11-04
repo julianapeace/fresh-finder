@@ -1,87 +1,54 @@
-<!DOCTYPE html>
-<html>
+{% extends "base.html" %}
 
-  <head>
-    <meta charset="utf-8">
+{% block title %}Home{% endblock %}
 
-    <title>Tweet .img</title>
-
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
-      crossorigin="anonymous">
-
-    <!-- custom css -->
-    <link rel="stylesheet" href="/static/css/style.css">
-
-    <div id="top">
-
-    </div>
-  </head>
-
-  <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top"><!--navbar-->
-
-      <a class="navbar-brand mb-0 h1" href="#top">Tweet .img</a>
-    </nav>
-
-    <div class="wrapper container-fluid"><!--map wrapper with collapsable menu-->
+{% block container %}
+<div class="wrapper container-fluid"><!--map wrapper with collapsable menu-->
 
         <div class="row">
-          <nav id="sidebar" class="">
-            <!-- Sidebar map menu -->
-            <div class="sidebar-header">
-              <h3>Map Options</h3>
+
+          <form action="/search" method="post">
+            <div class="row">
+              <div class="col mb-3">
+                <label for="validationDefault01"></label>
+                <input type="text" class="form-control" id="validationDefault01" placeholder="Keywords" required>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col mb-3">
+                <label for="validationDefault02"></label>
+                <input type="text" class="form-control" id="validationDefault02" placeholder="Address" required>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="validationDefault03"></label>
+                <input type="text" class="form-control" id="validationDefault03" placeholder="City" required>
+                <div class="invalid-feedback">
+                  Please provide a valid city.
+                </div>
+              </div>
+              <div class="col-md-3 mb-3">
+                <label for="validationDefault04"></label>
+                <input type="text" class="form-control" id="validationDefault04" placeholder="State" required>
+                <div class="invalid-feedback">
+                  Please provide a valid state.
+                </div>
+              </div>
+              <div class="col-md-3 mb-3">
+                <label for="validationDefault05"></label>
+                <input type="text" class="form-control" id="validationDefault05" placeholder="Zip" required>
+                <div class="invalid-feedback">
+                  Please provide a valid zip.
+                </div>
+              </div>
             </div>
 
-            <hr>
+            <button class="btn btn-primary" type="submit">Submit</button>
+          </form>
 
-            <!-- Sidebar links, soon to be form -->
-            <button type="button" id="all_crime" class="btn btn-info btn-sm" onclick="toggleHeatmap()">
-              Crime Heat Map
-            </button>
-            <button type="button" id="crime" class="btn btn-info btn-sm">
-              Crime Details
-            </button>
-            <button type="button" id="bikeways" class="btn btn-info btn-sm">
-              Bikeways
-            </button>
-            <button type="button" id="bus_routes" class="btn btn-info btn-sm">
-              Bus Routes
-            </button>
+        </div><!--End row-->
 
-          </nav>
+</div><!--End wrapper-->
 
-          <div class="col" id="content" style="padding: 0;">
-
-            <button type="button" id="sidebarCollapse" class="btn btn-light btn-sm">
-              Map Menu
-            </button>
-
-            <div id="map"></div>
-
-            <div id="walkscore_container">
-              <div id='ws-walkscore-tile'></div>
-            </div>
-
-          </div>
-
-        </div>
-
-      </div><!--End wrapper-->
-
-    <!--bootstrap javascripts-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
-      crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
-      crossorigin="anonymous"></script>
-
-    <!-- scripts -->
-    <script src="/static/js/main.js"></script>
-    <script src="/static/js/main_data.js"></script>
-    <script src="/static/axios.min.js"></script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA0fEoOYqyHqCn0k7w0IhQGjW27eFXhfvc&callback=initMap&libraries=visualization">
-    </script>
-  </body>
-
-</html>
+{% endblock %}
