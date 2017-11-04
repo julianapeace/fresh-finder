@@ -87,11 +87,19 @@ function initMap() {
   map.data.addListener('click', function(event){
    var infoWindow = new google.maps.InfoWindow({
      content: (
-       "<strong>Site:</strong> " +
-       event.feature.getProperty('SITE_NAME')
-      //  "<br>" +
-      //  "<strong>Occurred:</strong> " +
-      //  event.feature.getProperty('time_begun')
+       "<strong>Market:</strong> " +
+       event.feature.getProperty('MarketName') +
+       "<br>" +
+       "<strong>Date:</strong> " +
+       event.feature.getProperty('Season1Date') +
+       "<br>" +
+       "<strong>Time:</strong> " +
+       event.feature.getProperty('Season1Time') +
+       "<br>" +
+       "<strong>Address:</strong> " + "<br>" +
+       event.feature.getProperty('street') + " " + event.feature.getProperty('city') + " " +
+       event.feature.getProperty('State') + " " +
+       event.feature.getProperty('zip')
     ),
      pixelOffset: new google.maps.Size(0, -40)
    });
@@ -137,7 +145,7 @@ function load_geojson(results) {
 }
 
 function add_data () {
-    axios.get(`/static/data/convertcsv.geojson`)
+    axios.get(`/static/data/convertcsv-2.geojson`)
    .then(function (response) {
     //  crimeMapMarkers = load_geojson(response.data, 'crime');
      crimeMapMarkers = load_geojson(response.data, 'crime');
