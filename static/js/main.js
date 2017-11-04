@@ -136,7 +136,7 @@ function load_geojson(results) {
 }
 
 function add_data () {
-    axios.get(`https://opendata.arcgis.com/datasets/59d52cd8fa9d463ea7cf9f3c0a0c6ea2_0.geojson`)
+    axios.get(`/static/data/convertcsv.geojson`)
    .then(function (response) {
     //  crimeMapMarkers = load_geojson(response.data, 'crime');
      crimeMapMarkers = load_geojson(response.data, 'crime');
